@@ -31,12 +31,13 @@
                 <div class="card m-1">
                     <div class="card-body">
                         
-                            {{ task.task }}
+                            {{ task.task }}<br />
+                            <span style='font-size:.7em; color: grey'>{{ task.created_at }}</span>
                         
                         <span style="position: relative; float: right;">
-                            <a class="btn btn-success"><i class="fa fa-check"></i> Mark as Done</a>
-                            <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                            <a class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                            <a href="{% url 'mark_as_done' task.id %}" class="btn btn-success"><i class="fa fa-check"></i> Mark as Done</a>
+                            <a href="{% url 'delete_task' task.id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'edit_task' task.id %}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                         </span>
                     </div>
                 </div>
@@ -45,11 +46,16 @@
             <div class="col-md-5 col-lg-5">
                 <h5>Completed Tasks</h5>
                 <!-- List of all the tasks that have completed -->
+                {% for i in completed_task %}
+            
                 <div class="card m-1">
                     <div class="card-body">
-                        This is the completed task.
+                        <span style="color:red; text-decoration:line-through">{{ i.task }} <br /> </span><span style="font-size:.7em; color: grey"> {{ i.created_at }}</span>
+                        <a href="{% url 'undo_mark_as_done' i.id %}" class="btn btn-info"><i class="fa fa-undo"></i>  </a>
+
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
         <div class="row">
