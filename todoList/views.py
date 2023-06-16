@@ -40,3 +40,15 @@ def delete_task(request, id):
     task = Task.objects.get(pk=id)
     task.delete()
     return redirect('home')
+
+
+def calculator(request):
+    result = 0
+    try:
+        num1 = int(request.GET['num1'])
+        num2 = int(request.GET['num2'])
+        result = num1 + num2
+    except:
+         pass
+    return render(request, 'calculator.html' ,{'result': result})
+

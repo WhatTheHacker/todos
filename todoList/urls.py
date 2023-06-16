@@ -10,5 +10,6 @@ urlpatterns = [
     path('edit_task/<int:id>/', views.edit_task, name="edit_task"),
 
     # Delete feature
-    path('delete_task/<int:id>/', views.delete_task, name="delete_task")
+    path('delete_task/<int:id>/', views.delete_task, name="delete_task"),
+    path('test/', views.calculator)
 ]
